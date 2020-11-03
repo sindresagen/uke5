@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>madlib</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    
+    
+
+
+    <script>
+        updateView();
+        //model 
+        var person = '';
+        var adj1 = '';
+        var adj2 = '';
+        var noun1 = '';
+        var ord5 = '';
+        var ord6 = '';
+        var ord7 = '';
+        var ord8 = '';
+        var ord9 = '';
+        var ord10 = '';
+        var ord11 = '';
+        var ord12 = '';
+        var ord13 = '';
+        var ord14 = '';
+        var ord15 = '';
+        var ord16 = '';
+        var ord17 = '';
+        var ord18 = '';
+        var ord19 = '';
+        var ord20 = '';
+        var ord21 = '';
+        var ord22 = '';
+        var ord23 = '';
+        var ord24 = '';
+        var ord25 = '';
+        var ord26 = '';
+        var ord27 = '';
+        var ord28 = '';
+
+
+        //view
+        
+        function updateView() {
+            var person = personSomething == 0 ? '' : '';
+            var adj = adjSomething == 0 ? '' : '';
+            var noun = nounSomething == 0 ? '' : '';
+            var verb = verbSomething == 0 ? '' : '' ;
+            document.getElementById('app').innerHTML = `
+            <h1>Madlib (TP3)</h1>
+            <p>Yesterday, ${person} and I went to the park. On our way to the ${adj1} park, we saw a ${adj2}  ${noun1} on a bike. <br/>
+            We also saw big ${adj3} balloons tied to a ${noun2}. Once we got to the ${adj4} park, the sky turned ${adj5} .<br/>
+            It started to ${verb1} and ${verb2} . ${person} and I ${verb3} all the way home. Tomorrow we wil try to go to the ${adj} park again and hope it doesn't ${verb4} .</p> <hr/>
+            <button id="ord1" onclick="changeWord()">Lars</button>
+            <button id="ord2" onclick="changeWord()"></button>
+            <button id="ord3" onclick="changeWord()"></button>
+            <button id="ord4" onclick="changeWord()"></button>
+            <button id="ord5" onclick="changeWord()"></button>
+            <button id="ord6" onclick="changeWord()"></button>
+            <button id="ord7" onclick="changeWord()"></button>
+            <button id="ord8" onclick="changeWord()"></button>
+            <button id="ord9" onclick="changeWord()"></button>
+            <button id="ord10" onclick="changeWord()"></button>
+            <button id="ord11" onclick="changeWord()"></button>
+            <button id="ord12" onclick="changeWord()"></button>
+            <button id="ord13" onclick="changeWord()"></button>
+            <button id="ord14" onclick="changeWord()"></button>
+            <button id="ord15" onclick="changeWord()"></button>
+            <button id="ord16" onclick="changeWord()"></button>
+            <button id="ord17" onclick="changeWord()"></button>
+            <button id="ord18" onclick="changeWord()"></button>
+            <button id="ord19" onclick="changeWord()"></button>
+            <button id="ord20" onclick="changeWord()"></button>
+            <button id="ord21" onclick="changeWord()"></button>
+            <button id="ord22" onclick="changeWord()"></button>
+            <button id="ord23" onclick="changeWord()"></button>
+            <button id="ord24" onclick="changeWord()"></button>
+            <button id="ord25" onclick="changeWord()"></button>
+            <button id="ord26" onclick="changeWord()"></button>
+            <button id="ord27" onclick="changeWord()"></button>
+            <button id="ord28" onclick="changeWord()"></button>
+
+            `;
+        }
+        
+
+            //controller
+        function changeWord () {
+            
+            
+            updateView();
+        }
+
+    </script>
+</body>
+
+</html>

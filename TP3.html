@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>madlib</title>
+    <link rel="stylesheet" type="text/css" href="TP3.css">
+</head>
+
+<body>
+    <div id="app"></div>
+    
+    
+
+
+    <script>
+        updateView();
+        //model 
+        var person1 = '';
+        var adj1 = '';
+        var adj2 = '';
+        var noun1 = '';
+        var ord5 = '';
+        var ord6 = '';
+        var ord7 = '';
+        var ord8 = '';
+        var ord9 = '';
+        var ord10 = '';
+        var ord11 = '';
+        var ord12 = '';
+        var ord13 = '';
+        var ord14 = '';
+        var ord15 = '';
+        var ord16 = '';
+        var ord17 = '';
+        var ord18 = '';
+        var ord19 = '';
+        var ord20 = '';
+        var ord21 = '';
+        var ord22 = '';
+        var ord23 = '';
+        var ord24 = '';
+        var ord25 = '';
+        var ord26 = '';
+        var ord27 = '';
+        var ord28 = '';
+
+
+        //view
+        
+        function updateView() {
+            // var person = personSomething == 0 ? '' : '';
+            // var adj = adjSomething == 0 ? '' : '';
+            // var noun = nounSomething == 0 ? '' : '';
+            // var verb = verbSomething == 0 ? '' : '' ;
+            document.getElementById('app').innerHTML = `
+            <h1>Madlib (TP3)</h1>
+            <p>Yesterday, ${person1 ? person1 : '<b>Select Name</b>'} and I went to the park. On our way to the (adj) park, we saw a (adj)  (noun) on a bike. <br/>
+            We also saw big (adj) balloons tied to a noun. Once we got to the (adj) park, the sky turned (adj) .<br/>
+            It started to (verb) and (verb) . person and I (person) all the way home. Tomorrow we wil try to go to the (adj) park again and hope it doesn't (verb) .</p> <hr/>
+            <button class="button" id="ord1" onclick="changeWord(this, name)">Lars</button>
+            <button class="button" id="ord2" onclick="changeWord()"></button>
+            <button class="button" id="ord3" onclick="changeWord()"></button>
+            <button class="button" id="ord4" onclick="changeWord()"></button>
+            <button class="button" id="ord5" onclick="changeWord()"></button>
+            <button class="button" id="ord6" onclick="changeWord()"></button>
+            <button class="button" id="ord7" onclick="changeWord()"></button>
+            <button class="button" id="ord8" onclick="changeWord()"></button>
+            <button class="button" id="ord9" onclick="changeWord()"></button>
+            <button class="button" id="ord10" onclick="changeWord()"></button>
+            <button class="button" id="ord11" onclick="changeWord()"></button>
+            <button class="button" id="ord12" onclick="changeWord()"></button>
+            <button class="button" id="ord13" onclick="changeWord()"></button>
+            <button class="button" id="ord14" onclick="changeWord()"></button><br/>
+            <button class="button" id="ord15" onclick="changeWord()"></button>
+            <button class="button" id="ord16" onclick="changeWord()"></button>
+            <button class="button" id="ord17" onclick="changeWord()"></button>
+            <button class="button" id="ord18" onclick="changeWord()"></button>
+            <button class="button" id="ord19" onclick="changeWord()"></button>
+            <button class="button" id="ord20" onclick="changeWord()"></button>
+            <button class="button" id="ord21" onclick="changeWord()"></button>
+            <button class="button" id="ord22" onclick="changeWord()"></button>
+            <button class="button" id="ord23" onclick="changeWord()"></button>
+            <button class="button" id="ord24" onclick="changeWord()"></button>
+            <button class="button" id="ord25" onclick="changeWord()"></button>
+            <button class="button" id="ord26" onclick="changeWord()"></button>
+            <button class="button" id="ord27" onclick="changeWord()"></button>
+            <button class="button" id="ord28" onclick="changeWord()"></button>
+
+            `;
+        }
+        var person;
+            //controller
+        function changeWord (clickThis, typeOfWord) {
+                if (person1 === '') {
+                    person1 = clickThis.innerHTML;
+                }
+                
+                
+            
+            
+            updateView();
+        }
+
+    </script>
+</body>
+
+</html>
