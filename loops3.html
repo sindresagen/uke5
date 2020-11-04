@@ -6,61 +6,72 @@
     <title>Tre på rad</title>
     <style type="text/css">
         div {
-            color: green;
-            background-color: lightgray;
-            width: 100px;
-            height: 100px;
-            float: left;
-            margin: 2px;
-            font-size: 500%;
-            font-family: helvetica;
-            text-align: center;
-            vertical-align: middle;
+            user-select: none;
         }
+
+            div.cell {
+                background-color: lightgray;
+                width: 100px;
+                height: 100px;
+                float: left;
+                margin: 2px;
+                font-size: 500%;
+                font-family: helvetica;
+                text-align: center;
+                vertical-align: middle;
+            }
 
             div.first {
                 clear: left;
             }
+
+            div.coloro {
+                color: blue;
+            }
+
+            div.colorx {
+                color: green;
+            }
     </style>
 </head>
 <body>
-    <!--
-    1. Grunnleggende HTML
-    2. Kjøre Javascript-kommandoer ved klikk på noe på websiden
-    3. Hente ut element i Javascript - "this" eller via id
-    4. Endre HTML til et element vha. Javascript.
-    -->
-    <div onclick="setX(this)" class="first"></div>
-    <div onclick="setX(this)"></div>
-    <div onclick="setX(this)"></div>
-
-    <div onclick="setX(this)" class="first"></div>
-    <div onclick="setX(this)"></div>
-    <div onclick="setX(this)"></div>
-
-    <div onclick="setX(this)" class="first"></div>
-    <div onclick="setX(this)"></div>
-    <div onclick="setX(this)"></div>
+    <div id="board"></div>
 
     <script type="text/javascript">
-        function setX(divElement) {
-            if (divElement.innerHTML !== 'x' && divElement.innerHTML !== 'o') {
-                divElement.innerHTML = 'x';
+        // hjelpevariabler for view og controller
+        let boardDiv = document.getElementById('board');
 
-                var divs1 = document.getElementsByTagName('div');
-                var divs2 = new Array();
-                for (var i = 0; i < divs1.length; i++) {
-                    if (divs1[i].innerHTML !== 'x' && divs1[i].innerHTML !== 'o') {
-                        divs2.push(divs1[i]);
-                    }
-                }
+        // model
+        let board = ['', '', '', '', '', '', '', '', ''];
 
-                if (divs2.length > 0) {
-                    var index = Math.floor(Math.random() * divs2.length);
-                    divs2[index].innerHTML = 'o';
-                    divs2[index].style.color = 'blue';
-                }
+        // view
+        show();
+        function show() {
+            let html = '';
+            for (let i = 0; i < 9; i++) {
+                let first = i % 3 == 0 ? 'first' : '';
+                html += `<div onclick="setX(${i})" class="cell color${board[i]} ${first}">${board[i]}</div>`;
             }
+            boardDiv.innerHTML = html;
+        }
+
+        // controller
+        function setX(index) {
+            console.log(index);
+            if (board[index] === '') {
+                board[index] = 'x';
+                setO();
+            }
+            show();
+        }
+
+        function setO() {
+            let blankIndexes = Array.from(board.keys()).filter(i => board[i] === '');
+            if (blankIndexes.length === 0) return;
+            let random = Math.floor(Math.random() * blankIndexes.length);
+            let blankIndex = blankIndexes[random];
+            board[blankIndex] = 'o';
+            show();
         }
     </script>
 </body>
