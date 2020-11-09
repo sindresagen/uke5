@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .lightOn {
+            background-color: yellow;
+            border: solid black 2px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            float: left;
+        }
+
+        .lamp {
+            background-color: purple;
+            border: solid black 2px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            float: left;
+        }
+
+        div.firstInRow {
+            clear: left;
+        }
+    </style>
+</head>
+
+<body onload="startTime()">
+    <div id="app"></div>
+    <script>
+        // model
+        var selectedLampIndex;
+        var startTime;
+        var finishTime;
+        var spentMilliseconds;
+        var spentSeconds;
+
+        // view
+        updateView();
+        function updateView() {
+            document.getElementById('app').innerHTML = `
+        <div id="1" class="lamp"></div>
+        <div id="2" class="lamp"></div>
+        <div id="3" class="lamp"></div>
+        <div id="4" class="lamp"></div>
+        <div id="5" class="lamp"></div>
+
+        <div id="6" class="lamp firstInRow"></div>
+        <div id="7" class="lamp"></div>
+        <div id="8" class="lamp"></div>
+        <div id="9" class="lamp"></div>
+        <div id="10" class="lamp"></div>
+
+        <div id="11" class="lamp firstInRow"></div>
+        <div id="12" class="lamp"></div>
+        <div id="13" class="lamp"></div>
+        <div id="14" class="lamp"></div>
+        <div id="15" class="lamp"></div>
+
+        <div id="16" class="lamp firstInRow"></div>
+        <div id="17" class="lamp"></div>
+        <div id="18" class="lamp"></div>
+        <div id="19" class="lamp"></div>
+        <div id="20" class="lamp"></div>
+
+        <div id="21" class="lamp firstInRow"></div>
+        <div id="22" class="lamp"></div>
+        <div id="23" class="lamp"></div>
+        <div id="24" class="lamp"></div>
+        <div id="25" class="lamp"></div>
+        `;
+
+        }
+        // controller
+        randomLight();
+    function randomLight () {
+        selectedLampIndex = Math.floor(Math.random() * 25);
+        document.getElementById(selectedLampIndex).innerHTML += `
+        <div class="lightOn" onclick="finishTime(); timeCalc()"></div>
+        `
+
+    }
+    function startTime(){
+        startingTime = new Date().getTime();
+    }
+    function finishTime(){
+        finishingTime = new Date().getTime();
+    }
+    function timeCalc() {
+        var spentMilliseconds = Math.floor(finishTime - startTime);
+        var spentSeconds = spentMilliseconds / 1000;
+    }
+    </script>
+
+</body>
+
+</html>

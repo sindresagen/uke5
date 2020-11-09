@@ -41,10 +41,7 @@
         //view
         updateView();
         function updateView() {
-            // var person = personSomething == 0 ? '' : '';
-            // var adj = adjSomething == 0 ? '' : '';
-            // var noun = nounSomething == 0 ? '' : '';
-            // var verb = verbSomething == 0 ? '' : '' ;
+
             document.getElementById('app').innerHTML = `
             <h1>Madlib (TP3)</h1>
             <p><div id="storyText">Yesterday, ${person1 ? person1 : '<b>Select Name</b>'} and I went to the park. On our way to the ${adj1 ? adj1 : '<b>Select adj</b>'} park,
@@ -61,7 +58,7 @@
             <hr>
             <div><b>Adjective:</b></div>
             <button class="button" id="ord3" onclick="changeWordAdj(this)">Busty</button>
-            <button class="button" id="ord4" onclick="changeWordAdj(this)">Cucky</button>
+            <button class="button" id="ord4" onclick="changeWordAdj(this)">Clean</button>
             <button class="button" id="ord5" onclick="changeWordAdj(this)">Drunk</button>
             <button class="button" id="ord6" onclick="changeWordAdj(this)">Fat</button>
             <button class="button" id="ord7" onclick="changeWordAdj(this)">Cute</button>
@@ -83,7 +80,7 @@
             <button class="button" id="ord19" onclick="changeWordVerb(this)">Rain</button>
             <button class="button" id="ord20" onclick="changeWordVerb(this)">Crash</button>
             <button class="button" id="ord21" onclick="changeWordVerb(this)">Whistle</button>
-            <button class="button" id="ord22" onclick="changeWordVerb(this)">F**k</button>
+            <button class="button" id="ord22" onclick="changeWordVerb(this)">Laugh</button>
             <button class="button" id="ord23" onclick="changeWordVerb(this)">Burn</button>
             <button class="button" id="ord24" onclick="changeWordVerb(this)">Beat</button>
             <button class="button" id="ord25" onclick="changeWordVerb(this)">Wreck</button>
@@ -155,7 +152,7 @@
                 adj5  != '' && adj6  != '' && noun1 != '' && noun2 != '' && verb1 != '' && 
                 verb2  != '' && verb3  != '' && verb4 != '') {
 
-                    ifDone = '<div><b>The story is completed, click <div onclick="redirectAndRead()">here</div> for a nicer version.</b></div>';
+                    ifDone = '<div style="margin-top: 30px; margin-left: 45%;"><b>The story is completed.</b></div>';
                     updateView();
                     
             }
