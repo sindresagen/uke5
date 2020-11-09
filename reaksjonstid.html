@@ -24,13 +24,13 @@
             float: left;
         }
 
-        div.firstInRow {
+        .firstInRow {
             clear: left;
         }
     </style>
 </head>
 
-<body onload="startTime()">
+<body>
     <div id="app"></div>
     <script>
         // model
@@ -43,6 +43,8 @@
         // view
         updateView();
         function updateView() {
+            var spentTime = spentMilliseconds == false ? '' : spentMilliseconds;
+            var spentTime2 = spentSeconds == false ? '' : spentSeconds;
             document.getElementById('app').innerHTML = `
         <div id="1" class="lamp"></div>
         <div id="2" class="lamp"></div>
@@ -73,11 +75,14 @@
         <div id="23" class="lamp"></div>
         <div id="24" class="lamp"></div>
         <div id="25" class="lamp"></div>
+        <div>${spentTime || ''}</div>
+        <div>${spentTime2 || ''}</div>
         `;
 
         }
         // controller
         randomLight();
+        startTime();
     function randomLight () {
         selectedLampIndex = Math.floor(Math.random() * 25);
         document.getElementById(selectedLampIndex).innerHTML += `
@@ -92,8 +97,9 @@
         finishingTime = new Date().getTime();
     }
     function timeCalc() {
-        var spentMilliseconds = Math.floor(finishTime - startTime);
-        var spentSeconds = spentMilliseconds / 1000;
+        spentMilliseconds = Math.floor(finishingTime - startingTime);
+        spentSeconds = spentMilliseconds / 1000;
+        updateView();
     }
     </script>
 
