@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clickyclicky</title>
+
+    <style>
+        #app {
+            font-size: 100px;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+            const outputDiv = document.getElementById('app');
+        // model
+            let points = 0;
+            let pointsPerClick = 1;
+            let emoji = "🍺";
+
+        // view
+            function show() {
+                outputDiv.innerHTML = `${points} <div id="pintEmoji" onclick="doClick()">${emoji}</div>
+                <button onclick="upgradeBtn">Buy upgrade</button>`;
+            }
+        // controller
+            function doClick() {
+                points += pointsPerClick;
+                emoji = points % 2 == 0 ? "🍺" : "🍻";
+                show();
+            }
+
+            function upgradeBtn() {
+                if (points < 10) return;
+                points -= 10;
+                pointsPerClick++;
+                show();
+            }
+
+    </script>
+    
+</body>
+</html>

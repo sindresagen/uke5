@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>madlib</title>
     <link rel="stylesheet" type="text/css" href="TP3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <div id="fixed" class="flex-container"></div>
     <div id="app"></div>
     <div id="app1"></div>
-
+    
 
 
 
@@ -33,6 +35,7 @@
         var verb4 = '';
         var ifDone = '';
         var finishedStory = document.getElementById('storyText').textContent;
+        var finishedStoryLink;
 
 
         //view
@@ -151,16 +154,13 @@
             if  (person1 != '' && adj1 != '' && adj2 != '' && adj3 != '' && adj4 != '' && 
                 adj5  != '' && adj6  != '' && noun1 != '' && noun2 != '' && verb1 != '' && 
                 verb2  != '' && verb3  != '' && verb4 != '') {
-                ifDone = '<div><b>The story is completed, click <div onclick="redirectAndRead()">here</div> for a readout.</b></div>';
-                updateView();
+
+                    ifDone = '<div><b>The story is completed, click <div onclick="redirectAndRead()">here</div> for a nicer version.</b></div>';
+                    updateView();
+                    
             }
 
         }
-        // function redirectAndRead () {
-        //     finishedStory.replace(/\s/g, "%");
-        //     console.log(finishedStory);
-        //     <a href="url">link text</a>;
-        // }
 
 
     </script>

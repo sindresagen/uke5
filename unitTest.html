@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.11.3.css">
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.11.3.js"></script>
+    <script src="loginController.js"></script>
+    <script>
+          // mock view
+          function show() {}
+
+          // mock model
+            let screen;
+            let errorMessage;
+            let username;
+            let password;
+            let isLoggedIn;
+
+          QUnit.test('valid login', function(assert) {
+            username = 'sindre';
+            password = 'hemmelig';
+            logIn();
+            assert.equal(errorMessage, null);
+            assert.equal(isLoggedIn, true);
+            assert.equal(screen, 'main');
+          });
+
+          QUnit.test('invalid login', function(assert) {
+            username = 'sindre1';
+            password = 'hemmelig';
+            logIn();
+            assert.equal(errorMessage, 'Feil brukernavn og/eller passord. Prøv igjen!');
+            assert.equal(isLoggedIn, false);
+            assert.equal(screen, 'login');
+          });
+      </script>
+</body>
+</html>
