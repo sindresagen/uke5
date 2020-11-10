@@ -20,7 +20,7 @@ var result;
 // }
 // controller
 
-function startSpill()
+function startSpill(){}
 
 
 datamaskinValg();
