@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #board {
+        display: grid;
+        grid-template-columns: repeat(8, 60px);
+        grid-template-rows: repeat(8, 60px);
+        height: 480px;
+        width: 480px;
+    }
+
+    .dark,
+    .light {
+        font-size: 240%;
+        text-align: center;
+    }
+
+    .dark {
+        background-color: beige;
+    }
+
+    .light {
+        background-color: orange;
+    }
+</style>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+
+        // model
+        var blackPieceRow = 0;
+        var blackPieceCol = 0;
+        var whitePieceRow = 4;
+        var whitePieceCol = 4;
+        var isWhitePieceSelected = true;
+
+        // view
+        function getCellHtml(row, col, color) {
+            var hasBlackPiece = blackPieceRow == row && blackPieceCol == col;
+            var hasWhitePiece = whitePieceRow == row && whitePieceCol == col;
+            //var content =  isPiece ? '⬤' : '';
+            var content = '';
+            if (hasBlackPiece && hasWhitePiece) {
+                content = '⬤<span style="color: white">⬤</span>';
+            } else if (hasBlackPiece) {
+                content = '⬤';
+            } else if (hasWhitePiece) {
+                content = '<span style="color: white">⬤</span>';
+            }
+            return `<div class="${color}">${content}</div>`;
+        }
+
+        function getRowHtml(row, color1, color2) {
+            return getCellHtml(row, 0, color1)
+                + getCellHtml(row, 1, color2) 
+                + getCellHtml(row, 2, color1) 
+                + getCellHtml(row, 3, color2) 
+                + getCellHtml(row, 4, color1) 
+                + getCellHtml(row, 5, color2) 
+                + getCellHtml(row, 6, color1) 
+                + getCellHtml(row, 7, color2);
+        }
+
+        updateView();
+        function updateView() {
+            document.getElementById('app').innerHTML = `
+            
+            <div id="board">
+                ${getRowHtml(0, 'light', 'dark')
+                + getRowHtml(1, 'dark', 'light')
+                + getRowHtml(2, 'light', 'dark')
+                + getRowHtml(3, 'dark', 'light')
+                + getRowHtml(4, 'light', 'dark')
+                + getRowHtml(5, 'dark', 'light')
+                + getRowHtml(6, 'light', 'dark')
+                + getRowHtml(7, 'dark', 'light')}
+            </div>
+            <button onclick="move(-1,0)">Opp</button><br />
+            <button onclick="move(0,-1)">Venstre</button>
+            <button onclick="move(0,1)">Høyre</button><br />
+            <button onclick="move(1,0)">Ned</button>
+            <br /><br />
+            <button onclick="selectPiece(true)">Velge hvit brikke</button>
+            <button onclick="selectPiece(false)">Velge svart brikke</button>
+            Valgt brikke: <b>${isWhitePieceSelected ? 'hvit' : 'svart'}</b>     
+            <br/><br/>
+            <button onclick="swapPieces()">Bytt</button>
+            `;
+        }
+
+        // controller
+
+        function move(moveRow, moveCol) {
+            if (isWhitePieceSelected) {
+                whitePieceRow += moveRow;
+                whitePieceCol += moveCol;
+            } else {
+                blackPieceRow += moveRow;
+                blackPieceCol += moveCol;
+            }
+            updateView();
+        }
+
+        function selectPiece(newValueIsWhitePieceSelected) {
+            isWhitePieceSelected = newValueIsWhitePieceSelected;
+            updateView();
+        }
+
+        function swapPieces() {
+            var tmpCol = whitePieceCol;
+            var tmpRow = whitePieceRow;
+            whitePieceCol = blackPieceCol;
+            whitePieceRow = blackPieceRow;
+            blackPieceCol = tmpCol;
+            blackPieceRow = tmpRow;
+            updateView();
+        }
+    </script>
+
+</body>
+
+</html>
