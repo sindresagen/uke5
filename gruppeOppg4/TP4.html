@@ -5,29 +5,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rocku paperu scissoru</title>
-    <script src="TP4.js"></script>
-    <link rel="Stylesheet" href="TP4.css"/>
+    <link rel="Stylesheet" href="TP4.css" />
 
 </head>
 
 <body>
     <div id="app"></div>
+
+    <script>
+        // model
+
+        var spiller;
+        var datamaskin;
+        var poengSpiller = 0;
+        var poengDatamaskin = 0;
+        var resultat;
+        var poengSpillerTekst = '';
+        var poengDatamaskinTekst = '';
+
+        // view
+        updateView();
+        function updateView() {
+
+            var resultatTekst = resultat ? `${resultat} Vant!` : '';
+            if (resultat == 'Uavgjort') {
+                resultatTekst = 'Uavgjort';
+            }
+            document.getElementById('app').innerHTML = `
     <h1>Stein, Saks, Papir</h1>
-    <div class='poeng'>
-    </div>
-    <div class='melding'>
-    </div>
+    <div class='poeng'></div>
+    <div class='melding'></div>
     <button class="button" style="vertical-align:middle" onclick="spillerValg(0)"><span>Stein 🗻</span></button>
     <button class="button" style="vertical-align:middle" onclick="spillerValg(1)"><span>Saks ✂</span></button>
     <button class="button" style="vertical-align:middle" onclick="spillerValg(2)"><span>Papir 🧻</span></button>
+    <button class="button" style="vertical-align:middle" onclick="spillerValg(3)"><span>Gun 🔫</span></button>
+    <button class="button" style="vertical-align:middle" onclick="startSpill()">Start spill</button>
+    <div></div>
+    <div></div>
+    <div id="spillerValg">Du har valgt:${spiller || ''}</div>
+    <div id="datamaskinValg">Datamaskinen har valgt:${datamaskin || ''}</div>
+    <div id="resultatTekst">${resultatTekst || ''}</div>
+<hr>
+    <table>
+
+        <tr id="spillerValgTekst"><th>Spiller:</th><td>${poengSpillerTekst}</td></tr>
+        <tr id="datamaskinValgTekst"><th>Datamaskin:</th><td> ${poengDatamaskinTekst}</td></tr>
+
+    </table>
 
 
 
+    `;
 
-    <script>
+        // <div id="spillerValgTekst">Spiller: ${poengSpillerTekst} </div>
+    // <div id="datamaskinValgTekst">Datamaskin: ${poengDatamaskinTekst} </div>
+        }
+
+        // controller
+        poengTeller(0, 0);
+        function poengTeller(dataPoeng, SpillerPoeng) {
+            if (poengSpiller == 0) {
+                poengSpillerTekst = '⚪ ⚪ ⚪';
+            } else if (poengSpiller == 1) {
+                poengSpillerTekst = '⚫ ⚪ ⚪';
+            } else if (poengSpiller == 2) {
+                poengSpillerTekst = '⚫ ⚫ ⚪';
+            } else if (poengSpiller == 3) {
+                poengSpillerTekst = '⚫ ⚫ ⚫';
+                alert('Spiller vant hele sullamitten!');
+            }
+            if (poengDatamaskin == 0) {
+                poengDatamaskinTekst = '⚪ ⚪ ⚪';
+            } else if (poengDatamaskin == 1) {
+                poengDatamaskinTekst = '⚫ ⚪ ⚪';
+            } else if (poengDatamaskin == 2) {
+                poengDatamaskinTekst = '⚫ ⚫ ⚪';
+            } else if (poengDatamaskin == 3) {
+                poengDatamaskinTekst = '⚫ ⚫ ⚫';
+                alert('Datamaskin vant hele sullamitten!');
+            }
+        }
+        function startSpill() {
+            datamaskinValg();
+            sjekkVinner(spiller, datamaskin)
+            poengTeller(poengSpiller, poengDatamaskin);
+            updateView();
+
+        }
+
+        function sjekkVinner(spiller, datamaskin) {
+            // Sjekker om datamaskin vinner
+            if (((spiller === 'Stein' && datamaskin === 'Papir')
+                || (spiller === 'Papir' && datamaskin === 'Saks'))
+                || (spiller === 'Saks' && datamaskin === 'Stein')) {
+                resultat = 'Datamaskin';
+                poengDatamaskin += 1;
+                console.log(poengDatamaskin)
+                // alert('Datamaskinen vinner denne runden');
+            }
+            // Sjekker om spiller vinner
+            else if ((((datamaskin === 'Stein' && spiller === 'Papir')
+                || (datamaskin === 'Papir' && spiller === 'Saks'))
+                || (datamaskin === 'Saks' && spiller === 'Stein'))
+                || (spiller === 'Gun')) {
+                resultat = 'Spiller';
+                poengSpiller += 1;
+                console.log(poengSpiller)
+                // alert('Spilleren vinner denne runden');
+            }
+            // Uavgjort
+            else if (spiller === datamaskin) {
+                resultat = 'Uavgjort';
+            }
+
+        }
 
 
+        function datamaskinValg() {
+            var select = Math.floor(Math.random() * 3)
+            if (select == 0) {
+                datamaskin = 'Stein'
 
+            } else if (select == 1) {
+                datamaskin = 'Saks'
+
+            } else {
+                datamaskin = 'Papir';
+
+            }
+        }
+
+        function spillerValg(tall) {
+
+            var select = tall;
+            if (select == 0) {
+                spiller = 'Stein'
+
+            } else if (select == 1) {
+                spiller = 'Saks'
+
+            } else if (select == 2) {
+                spiller = 'Papir';
+
+            } else if (select == 3) {
+                spiller = 'Gun';
+            }
+
+            datamaskin = '';
+            resultat = '';
+            updateView();
+
+        }
+        updateView();
     </script>
 </body>
 

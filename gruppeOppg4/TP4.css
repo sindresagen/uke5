@@ -4,7 +4,21 @@ body {
     align-content: center;
     align-items: center;
 }
-
+#spillerValg {
+    font-size: 40px;
+}
+#datamaskinValg {
+    font-size: 40px;
+}
+#resultatTekst {
+    font-size: 40px;
+}
+#spillerValgTekst {
+    font-size: 40px;
+    }
+#datamaskinValgTekst {
+    font-size: 40px;
+}
 .button {
   display: inline-block;
   background-color: crimson;
