@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.12.0.css">
+    
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.12.0.js"></script>
+    <script src="index.js"></script>
+    <script>
+        let persons;
+        let personName;
+
+        function updateView() {}
+
+          QUnit.test('legge til', function(assert) {
+            persons = [];
+            personName = 'Sindre';
+            register();
+            assert.equal(persons.length, 1);
+            assert.equal(persons[0], 'Sindre');
+            // assert.equal();
+          });
+
+          QUnit.test('slette', function(assert) {
+            persons = ['A', 'B', 'C'];
+            personName = 'Sindre';
+            deletePerson(1);
+            assert.deepEqual(persons, ['A', 'C'])
+
+          });
+      </script>
+      
+</body>
+</html>

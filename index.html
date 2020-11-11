@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="index.js"></script>
 </head>
 <body>
     
@@ -12,6 +13,7 @@
     <script>
         // model
         const persons = [];
+        let personName = '';
 
         // view
         updateView();
@@ -19,7 +21,7 @@
             let personsHtml = '';
             for (let i = 0; i < persons.length; i++) {
                 const person = persons[i];
-                personsHtml += `<li>${person}</li>`;
+                personsHtml += `<li>${person} <button onclick="deletePerson(${i})">x</li>`;
             }
             const html = personsHtml === ''
                 ? `<i>Ingen påmeldte</i>`
@@ -32,17 +34,12 @@
             ${persons.length === 0 ? '<p><i>Ingen påmeldte</i></p>' : ''}
             <b>Påmelding:</b>
             Navn:
-            <input type="text" id="person"/>
+            <input type="text" oninput="personName = this.value" />
             <button onclick="register()">Meld på</button>
             `;
         }
 
-        //controller
-        function register() {
-            const person = document.getElementById('person').value;
-            persons.push(person);
-            updateView();
-        }
+        
         
     </script>
 </body>
