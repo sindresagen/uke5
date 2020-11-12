@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rocku paperu scissoru</title>
     <link rel="Stylesheet" href="TP4.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet">
 
 </head>
 
@@ -22,43 +24,43 @@
         var resultat;
         var poengSpillerTekst = '';
         var poengDatamaskinTekst = '';
+        var harVunnet3 = '';
 
         // view
         updateView();
         function updateView() {
 
-            var resultatTekst = resultat ? `${resultat} Vant!` : '';
+            var resultatTekst = resultat ? `<b>${resultat}</b> har vunnet denne runden!` : '';
             if (resultat == 'Uavgjort') {
-                resultatTekst = 'Uavgjort';
+                resultatTekst = '<b>Uavgjort</b>';
             }
             document.getElementById('app').innerHTML = `
-    <h1>Stein, Saks, Papir</h1>
+    <h1 id="overskrift">Stein Saks Papir</h1>
     <div class='poeng'></div>
     <div class='melding'></div>
-    <button class="button" style="vertical-align:middle" onclick="spillerValg(0)"><span>Stein 🗻</span></button>
-    <button class="button" style="vertical-align:middle" onclick="spillerValg(1)"><span>Saks ✂</span></button>
-    <button class="button" style="vertical-align:middle" onclick="spillerValg(2)"><span>Papir 🧻</span></button>
-    <button class="button" style="vertical-align:middle" onclick="spillerValg(3)"><span>Gun 🔫</span></button>
-    <button class="button" style="vertical-align:middle" onclick="startSpill()">Start spill</button>
+    
+    <button class="button" style="vertical-align:middle" onclick="spillerValg(0)"><span>✊</span></button>
+    <button class="button" style="vertical-align:middle" onclick="spillerValg(1)"><span>✌️</span></button>
+    <button class="button" style="vertical-align:middle" onclick="spillerValg(2)"><span>✋</span></button>
+    <button class="button" style="vertical-align:middle" onclick="spillerValg(3)"><span>🔫</span></button>
+    <button class="button" style="vertical-align:middle" onclick="startSpill()">▶️</button>
+    <hr>
     <div></div>
     <div></div>
-    <div id="spillerValg">Du har valgt:${spiller || ''}</div>
-    <div id="datamaskinValg">Datamaskinen har valgt:${datamaskin || ''}</div>
-    <div id="resultatTekst">${resultatTekst || ''}</div>
-<hr>
+    <div id="spillerValg">Du har valgt: <b>${spiller || ''}</b></div></br>
+    <div id="datamaskinValg">Datamaskinen har valgt: <b>${datamaskin || ''}</b></div></br>
+    <div id="resultatTekst">${resultatTekst || ''}</div></br>
+    
     <table>
-
-        <tr id="spillerValgTekst"><th>Spiller:</th><td>${poengSpillerTekst}</td></tr>
-        <tr id="datamaskinValgTekst"><th>Datamaskin:</th><td> ${poengDatamaskinTekst}</td></tr>
-
+        <tr id="poengSpillerTekst2"><th style="font-size: 95px">👨</th ><td id="poengSpillerTekst">${poengSpillerTekst}</td></tr>
+        <tr id="poengDatamaskinTekst2"><th style="font-size: 100px">💻</th><td id="poengDatamaskinTekst"> ${poengDatamaskinTekst}</td></tr>
     </table>
-
-
-
+    
+    <div id= "harVunnet3">${harVunnet3 || ''}</div>
     `;
 
-        // <div id="spillerValgTekst">Spiller: ${poengSpillerTekst} </div>
-    // <div id="datamaskinValgTekst">Datamaskin: ${poengDatamaskinTekst} </div>
+            // <div id="spillerValgTekst">Spiller: ${poengSpillerTekst} </div>
+            // <div id="datamaskinValgTekst">Datamaskin: ${poengDatamaskinTekst} </div>
         }
 
         // controller
@@ -72,7 +74,8 @@
                 poengSpillerTekst = '⚫ ⚫ ⚪';
             } else if (poengSpiller == 3) {
                 poengSpillerTekst = '⚫ ⚫ ⚫';
-                alert('Spiller vant hele sullamitten!');
+                harVunnet3 = `<b>Spilleren</b> har vunnet alle rundene!!! <br><br>
+                                Trykk ▶️ for å spille igjen`;
             }
             if (poengDatamaskin == 0) {
                 poengDatamaskinTekst = '⚪ ⚪ ⚪';
@@ -82,16 +85,22 @@
                 poengDatamaskinTekst = '⚫ ⚫ ⚪';
             } else if (poengDatamaskin == 3) {
                 poengDatamaskinTekst = '⚫ ⚫ ⚫';
-                alert('Datamaskin vant hele sullamitten!');
+                harVunnet3 = `<b>Datamaskinen</b> har vunnet alle rundene!!! <br><br>
+                                Trykk ▶️ for å spille igjen`;
             }
         }
         function startSpill() {
+            if (poengDatamaskinTekst == '⚫ ⚫ ⚫' || poengSpillerTekst == '⚫ ⚫ ⚫') {
+                location.reload();
+            }
             datamaskinValg();
             sjekkVinner(spiller, datamaskin)
             poengTeller(poengSpiller, poengDatamaskin);
             updateView();
 
         }
+
+
 
         function sjekkVinner(spiller, datamaskin) {
             // Sjekker om datamaskin vinner

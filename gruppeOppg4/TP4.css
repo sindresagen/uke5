@@ -1,24 +1,35 @@
 body {
+    background-color: blanchedalmond;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
 }
+
+#harVunnet3 {
+        font-size: 20px;
+    }
+
+
 #spillerValg {
-    font-size: 40px;
+    font-size: 20px;
 }
 #datamaskinValg {
-    font-size: 40px;
+    font-size: 20px;
 }
 #resultatTekst {
-    font-size: 40px;
+    font-size: 20px;
 }
-#spillerValgTekst {
-    font-size: 40px;
-    }
-#datamaskinValgTekst {
-    font-size: 40px;
+
+* {
+    font-family: 'Noto Sans JP', sans-serif;
 }
+
+#overskrift {
+    text-align: center;
+   font-size: 65px;
+}
+
 .button {
   display: inline-block;
   background-color: crimson;
@@ -42,6 +53,8 @@ body {
     transition: 0.5s;
   }
 
+
+
 .button span {
     cursor: pointer;
     display: inline-block;
@@ -57,3 +70,37 @@ body {
     opacity: 1;
     right: 0;
 }
+
+
+#poengSpillerTekst2 {
+    
+    font-size: 40px;
+    position: absolute;
+    left: 10px;
+    top: 200px;
+    
+    
+}
+#poengSpillerTekst {
+    transform: rotate(-90deg);
+    position: relative;
+    top: 9px;
+    left: -40px;
+       
+        
+}
+#poengDatamaskinTekst2 {
+    font-size: 40px;
+    position: absolute;
+    right: -190px;
+    top: 200px;
+
+}
+#poengDatamaskinTekst {
+    transform: rotate(-90deg);
+    position: relative;
+    top: 4px;
+    right: 300px;
+  
+}
+

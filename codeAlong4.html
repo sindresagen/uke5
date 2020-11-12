@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="codeAlong4.json"></script>
+</head>
+<body>
+    <button onclick="controller1()">Get data</button>
+    <div id="app"></div>
+
+    <script>
+        let liste = [];
+        var mydata = JSON.stringify("codeAlong4");
+        // var liste = []
+
+        function showView() {
+            let html = '';
+
+            html += `
+            ${liste}
+            `;
+
+            document.getElementById('app').innerHTML = html;
+            
+            
+        }
+
+        function controller1() {
+            for (let i; i < mydata.length; i++) {
+
+            }
+        }
+
+    </script>
+</body>
+</html>
