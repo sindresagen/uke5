@@ -33,31 +33,35 @@
             var resultatTekst = resultat ? `<b>${resultat}</b> har vunnet denne runden!` : '';
             if (resultat == 'Uavgjort') {
                 resultatTekst = '<b>Uavgjort</b>';
+            } else if (resultat == '') {
+                resultatTekst = '';
             }
             document.getElementById('app').innerHTML = `
-    <h1 id="overskrift">Stein Saks Papir</h1>
-    <div class='poeng'></div>
-    <div class='melding'></div>
-    
-    <button class="button" style="vertical-align:middle" onclick="spillerValg(0)"><span>✊</span></button>
-    <button class="button" style="vertical-align:middle" onclick="spillerValg(1)"><span>✌️</span></button>
-    <button class="button" style="vertical-align:middle" onclick="spillerValg(2)"><span>✋</span></button>
-    <button class="button" style="vertical-align:middle" onclick="spillerValg(3)"><span>🔫</span></button>
-    <button class="button" style="vertical-align:middle" onclick="startSpill()">▶️</button>
-    <hr>
-    <div></div>
-    <div></div>
-    <div id="spillerValg">Du har valgt: <b>${spiller || ''}</b></div></br>
-    <div id="datamaskinValg">Datamaskinen har valgt: <b>${datamaskin || ''}</b></div></br>
-    <div id="resultatTekst">${resultatTekst || ''}</div></br>
-    
-    <table>
-        <tr id="poengSpillerTekst2"><th style="font-size: 95px">👨</th ><td id="poengSpillerTekst">${poengSpillerTekst}</td></tr>
-        <tr id="poengDatamaskinTekst2"><th style="font-size: 100px">💻</th><td id="poengDatamaskinTekst"> ${poengDatamaskinTekst}</td></tr>
-    </table>
-    
-    <div id= "harVunnet3">${harVunnet3 || ''}</div>
-    `;
+                <h1 id="overskrift">Stein Saks Papir</h1>
+                <div class='poeng'></div>
+                <div class='melding'></div>
+                
+                <button class="button" style="vertical-align:middle" onclick="spillerValg(0)"><span>✊</span></button>
+                <button class="button" style="vertical-align:middle" onclick="spillerValg(1)"><span>✌️</span></button>
+                <button class="button" style="vertical-align:middle" onclick="spillerValg(2)"><span>✋</span></button>
+                <button class="button" style="vertical-align:middle" onclick="spillerValg(3)"><span>🔫</span></button>
+                <button class="button" style="vertical-align:middle" onclick="startSpill()">▶️</button>
+                
+                <hr></br>
+                <div></div>
+                <div></div>
+                <div id="spillerValg">Du har valgt: <b>${spiller || ''}</b></div></br>
+                <div id="datamaskinValg">Datamaskinen har valgt: <b>${datamaskin || ''}</b></div></br>
+                <hr>
+                <div id="resultatTekst">${resultatTekst || ''}</div></br>
+                
+                <table>
+                    <tr id="poengSpillerTekst2"><th style="font-size: 95px">👨</th ><td id="poengSpillerTekst">${poengSpillerTekst}</td></tr>
+                    <tr id="poengDatamaskinTekst2"><th style="font-size: 100px">💻</th><td id="poengDatamaskinTekst"> ${poengDatamaskinTekst}</td></tr>
+                </table>
+                
+                <div id= "harVunnet3">${harVunnet3 || ''}</div>
+                `;
 
             // <div id="spillerValgTekst">Spiller: ${poengSpillerTekst} </div>
             // <div id="datamaskinValgTekst">Datamaskin: ${poengDatamaskinTekst} </div>
@@ -75,7 +79,8 @@
             } else if (poengSpiller == 3) {
                 poengSpillerTekst = '⚫ ⚫ ⚫';
                 harVunnet3 = `<b>Spilleren</b> har vunnet alle rundene!!! <br><br>
-                                Trykk ▶️ for å spille igjen`;
+                                Trykk på ▶️ for å spille igjen`;
+                resultat = '';
             }
             if (poengDatamaskin == 0) {
                 poengDatamaskinTekst = '⚪ ⚪ ⚪';
@@ -86,7 +91,8 @@
             } else if (poengDatamaskin == 3) {
                 poengDatamaskinTekst = '⚫ ⚫ ⚫';
                 harVunnet3 = `<b>Datamaskinen</b> har vunnet alle rundene!!! <br><br>
-                                Trykk ▶️ for å spille igjen`;
+                                Trykk på ▶️ for å spille igjen`;
+                resultat = '';
             }
         }
         function startSpill() {
